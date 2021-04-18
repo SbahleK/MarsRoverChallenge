@@ -2,6 +2,7 @@
 using MarsRoverAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace MarsRoverAPI.Helpers
 {
@@ -14,6 +15,11 @@ namespace MarsRoverAPI.Helpers
 
         public  List<Movement> ToMovemenent(string instructions)
         {
+            var expression = new Regex("^[LMR]+$");
+            if (!expression.IsMatch(instructions))
+            {
+                throw new Exception($"Movements {instructions} does not match format LRM");
+            }
             var movements = new List<Movement>();
             foreach (var move in instructions)
             {
@@ -24,6 +30,11 @@ namespace MarsRoverAPI.Helpers
 
         public Plateau ToPlateau(string coordinates)
         {
+            var expression = new Regex("^\\d+ \\d+");
+            if (!expression.IsMatch(coordinates))
+            {
+                throw new Exception($"Plateau {coordinates} does not match format 0 0");
+            }
             var plateau = new Plateau();
             var split = coordinates.Split(' ');
 
@@ -35,6 +46,11 @@ namespace MarsRoverAPI.Helpers
 
         public Position ToRover(string command)
         {
+            var expression = new Regex("^\\d+ \\d+ [NSWE]$");
+            if (!expression.IsMatch(command))
+            {
+                throw new Exception($"Position {command} does not match format 0 0 N");
+            }
             var position = new Position();
             var split = command.Split(' ');
 
