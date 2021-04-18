@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MarsRoverAPI.Enums;
-using MarsRoverAPI.Helpers;
 using MarsRoverAPI.Models;
 
 namespace MarsRoverAPI.Commands
