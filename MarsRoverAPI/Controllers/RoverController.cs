@@ -46,7 +46,7 @@ namespace MarsRoverAPI.Controllers
             catch(Exception ex)
             {
                 _logger.LogError("Failed to deploy rover!", ex);
-                return new List<string>();
+                return null;
             }
         }
 
