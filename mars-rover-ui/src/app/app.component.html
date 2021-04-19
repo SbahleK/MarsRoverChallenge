@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row">
+     <div class="col-md-12">
+        <div style="text-align:end"> 
+           <button (click)="Deploy()" class="btn btn-success" [disabled]="disabled">Deploy Rovers</button>
+        </div>
+        <h1>Mars Rover Landing</h1>
+        <div>
+           <input type="text" class="form-control" placeholder="Enter Plateau Coordinates (X Y)"  [(ngModel)]="Plateau">
+           <span  *ngIf = "!validPlateau" class="text-danger">Plateau format must be 0 0</span>
+        </div>
+        <button (click)="addRover()" class="btn btn-danger mt-3">Add Rover</button>
+        <div *ngIf = "show" class="row" style="margin-top: 1rem;">
+           <div class="col-md-5">
+              <input type="text" class="form-control" placeholder="Enter Rover Initial Position (0 0 N)"  [(ngModel)]="Position">    
+              <span *ngIf ="!validPosition" class="text-danger">Position format must be 0 0 N</span>
+           </div>
+           <div class="col-md-5">
+              <input type="text" class="form-control" placeholder="Enter Movement Instructions (LRM)"  [(ngModel)]="Movements">    
+              <span *ngIf = "!validMovement" class="text-danger">Movement format must be LRMMR</span>
+           </div>
+           <div class="col-md-2">
+              <button (click)="onclick()" class="btn btn-success md">Add</button>
+           </div>
+        </div>
+        <table class="table table-bordered mt-3">
+           <thead class="thead-light">
+              <tr>
+                 <th>Rover Position(Initial)</th>
+                 <th>Movements</th>
+                 <th>Rover Position(Last)</th>
+                 <th>Remove Rover </th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr *ngFor="let rover of roverList; index as i">
+                 <td>{{rover.position}}</td>
+                 <td>{{rover.movement}}</td>
+                 <td>{{rovers[i]}}</td>
+                 <td>
+                    <button (click)="ondelete(i)" class="btn btn-success">Remove</button>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+     </div>
+  </div>
+</div>
